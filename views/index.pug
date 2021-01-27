@@ -1,0 +1,42 @@
+extends layout
+
+block content
+    div.container.center
+        include components/logo
+
+    div.horizontal-container
+        div#index.horizontal-container-child
+            div.container
+                h2 Welcome to #{title}
+                h1 Make your future better!
+                p Start now!
+                p And begin to manage your life with <b>#{title}</b> kanban.
+                br
+                br
+                button#account-btn.horizontal-container-next Account
+
+        div#account.horizontal-container-child
+            div.container
+                form(action='/' method='post')#login-form
+                    fieldset
+                        legend Login
+                        label
+                            input(placeholder='login' type='text' name='login')
+                        label
+                            input(placeholder='password' type='password' name='password')
+                        button(name= "login-btn") Submit
+
+                form(action='/' method='post')#register-form
+                    fieldset
+                        legend Register
+                        label
+                            input(placeholder='login' type='text' name='login')
+                        label
+                            input(placeholder='eMail' type='email' name='email')
+                        label
+                            input(placeholder='password' type='password' name='password')
+                        label
+                            input(placeholder='repeat password' type='password' name='repeat')
+                        button(name= "repeat-btn") Submit
+
+    script(type='text/javascript' src="/javascripts/horizontalContainer.js")

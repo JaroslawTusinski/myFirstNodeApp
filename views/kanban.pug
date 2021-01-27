@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    script(src="../javascripts/bundle.js")
+
+    include components/nav
+
+    div#app
+        .container
+            kanban(user_id= userId, tasks_json= userTasks)

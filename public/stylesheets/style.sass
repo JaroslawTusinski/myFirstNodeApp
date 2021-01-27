@@ -1,0 +1,227 @@
+@import "maxins"
+@import "colours"
+
+$logo-width: 250px
+$logo-height: 250px
+
+body
+  margin: 0
+  font-family: Roboto, sans-serif
+  background-color: $dark_colour
+  color: $light_color
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b
+  color: $main_color
+
+.logo
+  width: $logo-width
+  height: $logo-height
+  position: relative
+  margin: 25px
+
+  p
+    margin: 0
+    font-weight: bold
+    text-align: center
+    letter-spacing: 2px
+
+  span,
+  div
+    width: $logo-width
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%) scale(0.875)
+    text:
+      align: center
+
+  span
+    height: $logo-height
+    text:
+      transform: uppercase
+    font:
+      size: $logo-height * 1.15
+    line-height: 0.875em
+    color: $main_color
+    opacity: 0
+    animation:
+      duration: 3s
+      iteration-count: infinite
+    @include create_disappearance_children(6)
+
+  div
+    font:
+      size: 100px
+      weight: bold
+
+@include create_disappearance_animations(6)
+
+.center
+  .logo
+    margin: 25px auto
+
+.container
+  width: 100%
+  max-width: 900px
+  margin: 0 auto
+
+.loading-container
+  width: 100vw
+  height: 100vh
+  position: fixed
+  top: 0
+  left: 0
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  background-color: $dark_colour
+  opacity: 1
+  z-index: 9999999
+  transition: .8s ease-out
+
+  & > p
+    font-size: 1.5em
+    margin: 10px 0
+
+    span
+      opacity: 0
+      animation:
+        duration: 1s
+        iteration-count: infinite
+      @include create_disappearance_children(3)
+
+  &.hide
+    opacity: 0
+    z-index: -1
+
+@include create_hide-show_animations(3)
+
+.horizontal-container
+  width: 100vw
+  display: flex
+  overflow-x: hidden
+  overflow-y: auto
+
+  .horizontal-container-child
+    margin: 100px 0 80px
+    max-width: 100%
+    flex: 0 0 100%
+    transition: .3s ease-in-out
+
+    p
+      margin: 0
+
+    &#index
+      text-align: center
+
+button
+  position: relative
+  padding: 15px 35px
+  font:
+    //size: 1.1em
+    weight: bold
+  text-transform: uppercase
+  color: $dark_colour
+  background-color: $main_color
+  border:
+    style: solid
+    radius: 3px
+    width: 2px
+    color: darken($main_color, 15%)
+    bottom-width: 6px
+  outline: none
+  cursor: pointer
+  transition: .3s ease-in-out
+
+  &:active,
+  &:focus
+    transform: translateY(3px)
+    border-bottom-width: 3px
+
+form
+  height: 100%
+  width: 100%
+  max-width: 445px
+  margin: 2px
+  display: inline-block
+  vertical-align: top
+
+  label,
+  input
+    width: 100%
+    border-radius: 3px
+
+  label
+    input
+      margin-bottom: 12px
+      padding: 15px 35px
+      box-sizing: border-box
+      border:
+        style: solid
+        radius: 3px
+        width: 2px
+        color: $main_color
+      outline: none
+      background-color: rgba($dark_colour, .3)
+      color: $main_color
+      opacity: .5
+      transition: .3s ease-in-out
+
+      &:hover
+        opacity: .7
+
+      &:active,
+      &:focus
+        opacity: 1
+
+nav
+  width: 100%
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 9999
+  background-color: rgba(black, .3)
+
+  &:after
+    clear: both
+
+  .logo
+    width: max-content
+    max-width: 100px
+    height: max-content
+    max-height: 100px
+    transform: scale(.25)
+    float: left
+
+  .to-right
+    margin: 15px 0
+
+.to-right
+  float: right
+
+#app
+  margin: 100px 0 50px
+
+
+.card
+  width: calc(100% - 6px)
+  height: max-content
+  margin: 3px 3px 5px
+  padding: 5px 7px
+  box-sizing: border-box
+  border:
+    style: solid
+    radius: 3px
+    width: 2px
+    color: darken($light_color, 15%)
+  color: $dark_colour
+  background-color: $light_color
+  text-shadow: none

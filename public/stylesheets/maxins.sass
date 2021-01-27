@@ -1,0 +1,66 @@
+@mixin create_disappearance_animations($quantity)
+  @for $i from 1 through $quantity
+    @keyframes disappearance_#{$i}
+      #{100 * (($i - 1)/$quantity)}%
+        opacity: 1
+        transform: translate(-50%, -50%) scale(1)
+        animation-timing-function: ease-in
+      @if 100 * ($i/$quantity) < 100
+        #{100 * ($i/$quantity)}%
+          opacity: 0
+          transform: translate(-50%, -50%) scale(0.875)
+      @else
+        0%
+          opacity: 0
+          transform: translate(-50%, -50%) scale(0.875)
+      @if 100 * (($i - 2)/$quantity) >= 0
+        #{100 * (($i - 2)/$quantity)}%
+          opacity: 0
+          transform: translate(-50%, -50%) scale(0.875)
+      @else
+        #{100 - ($i/$quantity) * 100}%
+          opacity: 0
+          transform: translate(-50%, -50%) scale(0.875)
+      @if $i != 1
+        100%
+          opacity: 0
+          transform: translate(-50%, -50%) scale(0.875)
+      @else
+        100%
+          opacity: 1
+          transform: translate(-50%, -50%) scale(1)
+          animation-timing-function: ease-in
+
+@mixin create_disappearance_children($quantity)
+  @for $i from 1 through $quantity
+    &:nth-of-type(#{$i})
+      animation-name: disappearance_#{$i}
+
+@mixin create_hide-show_animations($quantity)
+  @for $i from 1 through $quantity
+    @keyframes hide-show_#{$i}
+      #{100 * (($i - 1)/$quantity)}%
+        opacity: 0
+      @if 100 * ($i/$quantity) < 100
+        #{100 * ($i/$quantity)}%
+          opacity: 1
+      @else
+        0%
+          opacity: 1
+      @if 100 * (($i - 2)/$quantity) >= 0
+        #{100 * (($i - 2)/$quantity)}%
+          opacity: 1
+      @else
+        #{100 - ($i/$quantity) * 100}%
+          opacity: 1
+      @if $i != 1
+        100%
+          opacity: 1
+      @else
+        100%
+          opacity: 0
+
+@mixin create_hide-show_children($quantity)
+  @for $i from 1 through $quantity
+    &:nth-of-type(#{$i})
+      animation-name: hide-show_#{$i}
